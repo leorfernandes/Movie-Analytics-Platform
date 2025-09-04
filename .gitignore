@@ -64,14 +64,13 @@ data/processed/
 *.json
 *.parquet
 
-# Generated visualizations (optional - you might want to show these)
+# Generated visualizations
 *.png
 *.jpg
 *.jpeg
 *.svg
 
-# Jupyter notebooks checkpoints (if you add notebooks later)
-.ipynb_checkpoints/
+# Jupyter notebooks checkpoints
 
 # MyPy cache
 .mypy_cache/
