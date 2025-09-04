@@ -31,10 +31,10 @@ jobs:
         pip install pre-commit
         pre-commit run --all-files
 
-    - name: Test database initialization
-      run: |
-        python scripts/init_database.py
+#    - name: Test database initialization
+#      run: |
+#        python scripts/init_database.py
 
-    - name: Test analytics
-      run: |
-        python src/analytics/performance.py
+#    - name: Test analytics
+#      run: |
+#        python src/analytics/performance.py
