@@ -9,13 +9,15 @@ from pathlib import Path
 # Add src to path
 sys.path.append(str(Path(__file__).parent.parent / "src"))
 
+import logging
+
+from data.collectors.tmdb_collector import TMDbCollector
 from database.connection import create_tables, drop_tables, get_database
 from database.models import Genre, Movie, Person
-from data.collectors.tmdb_collector import TMDbCollector
-import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 def initialize_database():
     """Initialize database with tables and basic data."""
@@ -34,6 +36,7 @@ def initialize_database():
         logger.error(f"Error initializing database: {e}")
         raise
 
+
 def initialize_genres():
     """Initialize genre from TMDb."""
     try:
@@ -43,14 +46,13 @@ def initialize_genres():
         # Get movie genres
         movie_genres = collector.get_genres("movie")
 
-        for genre_data in movie_genres.get('genres', []):
-            existing_genre = db.query(Genre).filter(Genre.tmdb_id == genre_data['id']).first()
+        for genre_data in movie_genres.get("genres", []):
+            existing_genre = (
+                db.query(Genre).filter(Genre.tmdb_id == genre_data["id"]).first()
+            )
 
             if not existing_genre:
-                genre = Genre(
-                    tmdb_id=genre_data['id'],
-                    name=genre_data['name']
-                )
+                genre = Genre(tmdb_id=genre_data["id"], name=genre_data["name"])
                 db.add(genre)
 
         db.commit()
@@ -61,6 +63,7 @@ def initialize_genres():
         raise
     finally:
         db.close()
+
 
 if __name__ == "__main__":
     initialize_database()
