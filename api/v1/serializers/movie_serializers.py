@@ -36,18 +36,55 @@ class MovieListSerializer(serializers.ModelSerializer):
     studio_name = serializers.CharField(source='studio.name', read_only=True)
     primary_genre = serializers.SerializerMethodField()
     is_profitable = serializers.ReadOnlyField()
+    budget_category = serializers.SerializerMethodField()
+    performance_rating = serializers.SerializerMethodField()
     
     class Meta:
         model = Movie
         fields = [
             'id', 'title', 'release_date', 'budget', 'revenue', 'roi',
-            'studio_name', 'primary_genre', 'is_profitable', 'tmdb_id'
+            'studio_name', 'primary_genre', 'is_profitable', 'tmdb_id',
+            'budget_category', 'performance_rating'
         ]
     
     def get_primary_genre(self, obj):
         """Get the first genre for the movie"""
         first_genre = obj.genres.first()
         return first_genre.name if first_genre else None
+    
+    def get_budget_category(self, obj):
+        """Categorize movie by budget size"""
+        if not obj.budget:
+            return "Unknown"
+        
+        budget = float(obj.budget)
+        if budget < 1_000_000:
+            return "Micro Budget"
+        elif budget < 15_000_000:
+            return "Low Budget"
+        elif budget < 50_000_000:
+            return "Medium Budget"
+        elif budget < 150_000_000:
+            return "High Budget"
+        else:
+            return "Blockbuster"
+    
+    def get_performance_rating(self, obj):
+        """Business performance assessment"""
+        if not obj.roi:
+            return "Unknown"
+        
+        roi = float(obj.roi)
+        if roi < -50:
+            return "Poor"
+        elif roi < 0:
+            return "Loss"
+        elif roi < 50:
+            return "Break Even"
+        elif roi < 200:
+            return "Good"
+        else:
+            return "Excellent"
 
 
 class MovieDetailSerializer(serializers.ModelSerializer):
