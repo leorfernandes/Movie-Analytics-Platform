@@ -19,6 +19,21 @@
 - [📈 Results](#-results)
 - [🤝 Contributing](#-contributing)
 
+## 🌿 Git Workflow & Branch Structure
+
+This project follows a **professional feature branch workflow** to demonstrate team collaboration practices.
+
+### Branch Structure
+```
+main                        → Production-ready releases
+development                 → Integration and testing branch
+feature/django-backend      → Django REST API (backend only)
+feature/react-frontend      → React dashboard (frontend only)
+feature/data-pipeline       → Data collection & ML (data engineering only)
+```
+
+---
+
 ## 🎯 Project Overview
 
 **CineMetrics** is a comprehensive analytics platform that provides data-driven insights for entertainment industry stakeholders. Built with Python and modern data engineering practices, it combines multiple data sources to deliver actionable intelligence for content strategy and market analysis.
@@ -247,18 +262,6 @@ python test_data_collection.py
 - **Action** dominates market share (50% of collection)
 - **Low-Mid Budget** films ($50M-$150M) achieve highest ROI (489.2%)
 - **Ne Zha franchise** demonstrates exceptional ROI (3000%+ returns)
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-1. Fork and clone the repository
-2. Set up development environment
-3. Install pre-commit hooks
-4. Make your changes
-5. Ensure all tests pass
-6. Submit a pull request
 
 ## 📄 License
 
