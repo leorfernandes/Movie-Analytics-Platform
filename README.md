@@ -1,5 +1,12 @@
 # 🎬 CineMetrics: Movie Analytics Platform
 
+## Project Status
+
+**Current Status:** *Paused*
+
+Check [PROJECT_STATUS.md](PROJECT_STATUS.md) for more information.
+## 
+
 > **Advanced entertainment industry analytics platform for data-driven insights and market intelligence**
 
 [![CI Pipeline](https://github.com/leorfernandes/Movie-Analytics-Platform/workflows/CI%20Pipeline/badge.svg)](https://github.com/leorfernandes/Movie-Analytics-Platform/actions)
